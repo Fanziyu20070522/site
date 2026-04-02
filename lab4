@@ -1,0 +1,75 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 关键：适配手机屏幕，禁止缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>乌龟乱爬</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #f0f0f0;
+            position: relative;
+        }
+
+        .turtle-wrap {
+            position: fixed;
+            width: 80px;
+            height: auto;
+            transition: all 0.6s linear;
+            transform-origin: center;
+            z-index: 9999;
+        }
+
+        .turtle-name {
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 2px;
+            white-space: nowrap;
+        }
+
+        .turtle-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="turtle-wrap">
+        <div class="turtle-name">齐晗羽</div>
+        < img class="turtle-img" src="https://cdn-icons-png.flaticon.com/512/105/105685.png" alt="乌龟">
+    </div>
+
+    <script>
+        const turtle = document.querySelector('.turtle-wrap');
+        const turtleImg = document.querySelector('.turtle-img');
+        function randomCrawl() {
+ 
+            const maxX = window.innerWidth - turtle.offsetWidth;
+            const maxY = window.innerHeight - turtle.offsetHeight;
+
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            const flip = Math.random() > 0.5 ? 'scaleX(1)' : 'scaleX(-1)';
+            turtle.style.left = `${randomX}px`;
+            turtle.style.top = `${randomY}px`;
+            turtle.style.transform = flip;
+        }
+        setInterval(randomCrawl, 600);
+        window.addEventListener('resize', () => {
+            randomCrawl();
+        });
+    </script>
+</body>
+</html>
